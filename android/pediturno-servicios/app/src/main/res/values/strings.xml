@@ -1,0 +1,5 @@
+<resources>
+    <!-- Provisioned per Firebase Android app; public OAuth client id, empty until setup. -->
+    <string name="google_server_client_id" translatable="false">000000000000-your_oauth_web_client_id.apps.googleusercontent.com</string>
+    <string name="app_name">Pediturno</string>
+</resources>

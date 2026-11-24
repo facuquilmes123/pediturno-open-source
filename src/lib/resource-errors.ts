@@ -1,0 +1,40 @@
+/** Public messages only: never include provider errors or request contents. */
+export function resourceErrorMessage(error: unknown, fallback = 'No se pudo guardar. Intentá nuevamente.') {
+  const message = error instanceof Error ? error.message : typeof error === 'string' ? error : '';
+  const messages: Record<string, string> = {
+    'Authentication required': 'Tu sesión expiró. Volvé a iniciar sesión.',
+    'Active membership required': 'Tu membresía no está activa. Revisala en Mi Membresía antes de guardar.',
+    'Business profile required': 'Primero guardá el perfil de tu negocio en Mi Negocio.',
+    'Wrong business modality': 'Este recurso corresponde al otro portal. Usá el acceso de tu negocio.',
+    'Invalid service name': 'El nombre del servicio debe tener entre 2 y 80 caracteres.',
+    'Invalid cancha name': 'El nombre de la cancha debe tener entre 2 y 80 caracteres.',
+    'Invalid service duration': 'La duración debe ser un número entero entre 10 y 1440 minutos.',
+    'Invalid cancha duration': 'Elegí una duración disponible para la cancha.',
+    'Invalid service price': 'Ingresá un precio mayor a 0, con hasta dos decimales y un máximo de $10.000.000.',
+    'Invalid cancha price': 'Ingresá un precio mayor a 0, con hasta dos decimales y un máximo de $10.000.000.',
+    'Service unavailable': 'El servicio no está disponible. Recargá el listado antes de reintentar.',
+    'Cancha unavailable': 'La cancha no está disponible. Recargá el listado antes de reintentar.',
+    'Space unavailable': 'El espacio no está disponible. Recargá el listado antes de reintentar.',
+    'Invalid space details': 'Revisá los datos del espacio antes de guardar.',
+    'Invalid space name': 'El nombre del espacio debe tener entre 2 y 80 caracteres.',
+    'Invalid space category': 'Elegí un tipo de espacio válido.',
+    'Invalid space description': 'La descripción no puede superar los 1.200 caracteres.',
+    'Invalid space capacity': 'La capacidad debe ser un número entre 1 y 10.000 personas.',
+    'Invalid space packages': 'Elegí entre uno y cuatro paquetes, sin repetir duraciones.',
+    'Invalid space package price': 'Ingresá un precio válido para cada paquete seleccionado.',
+    'Invalid space preparationMinutes': 'La preparación debe estar entre 0 y 240 minutos.',
+    'Invalid space cleanupMinutes': 'La limpieza debe estar entre 0 y 240 minutos.',
+    'Invalid space bookingBufferMinutes': 'La pausa entre reservas debe estar entre 0 y 240 minutos.',
+    'Invalid space status': 'Elegí un estado válido para el espacio.',
+    'Invalid space image': 'La imagen del espacio no es válida o no pertenece a tu cuenta.',
+    'Invalid space images': 'Podés cargar hasta ocho imágenes válidas del espacio.',
+    'Configure availability before activating the service': 'Configurá al menos un día y horario válido antes de activar el servicio.',
+    'Configure availability before activating the cancha': 'Configurá al menos un día y horario válido antes de activar la cancha.',
+    'Configure availability before activating the space': 'Configurá franjas suficientes para todos los paquetes antes de activar el espacio.',
+    'Service has legacy reservations': 'Este servicio tiene reservas vigentes. Conservá su nombre hasta que finalicen.',
+    'Cancha has legacy reservations': 'Esta cancha tiene reservas vigentes. Conservá su nombre hasta que finalicen.',
+    'Space has legacy reservations': 'Este espacio tiene reservas vigentes. Conservá su nombre hasta que finalicen.',
+    'Save temporarily unavailable': 'No se pudo confirmar el guardado. Recargá el listado antes de reintentar para evitar duplicados.',
+  };
+  return messages[message] || fallback;
+}

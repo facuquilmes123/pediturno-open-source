@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Web and Android owner operations use authenticated server APIs with
+    // persistent admission limits. Public booking uses server projections.
+    // Storage evaluates its own receipt and business lookups server-side.
+    match /{document=**} { allow read, write: if false; }
+  }
+}

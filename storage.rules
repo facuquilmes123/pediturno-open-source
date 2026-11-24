@@ -1,0 +1,68 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isOwner(businessId) {
+      return request.auth != null && request.auth.uid == businessId;
+    }
+
+    function hasActiveMembership(businessId) {
+      let business = firestore.get(/databases/(default)/documents/businesses/$(businessId)).data;
+      return business.status == 'active' && (
+        (!('businessType' in business) || business.businessType == null || business.businessType == 'services') ||
+        ('membership' in business && (business.membership.type == 'lifetime' ||
+          (business.membership.type in ['trial', 'pro'] && business.membership.expiresAt > request.time))) ||
+        ('googlePlayMembership' in business &&
+          (!('businessType' in business) || business.businessType == null || business.businessType == 'services') &&
+          business.googlePlayMembership.keys().hasAll(['type', 'source', 'productId', 'purchaseHash', 'status', 'expiresAt']) &&
+          business.googlePlayMembership.type == 'pro' && business.googlePlayMembership.source == 'GOOGLE_PLAY' &&
+          business.googlePlayMembership.productId == 'pediturno_servicios_pro_monthly' &&
+          business.googlePlayMembership.purchaseHash is string && business.googlePlayMembership.purchaseHash.matches('[a-f0-9]{64}') &&
+          business.googlePlayMembership.status in ['active', 'grace_period'] && business.googlePlayMembership.expiresAt > request.time)
+      );
+    }
+
+    function activeOwner(businessId) {
+      return isOwner(businessId) && hasActiveMembership(businessId);
+    }
+
+    function permittedImage() {
+      return request.resource.size > 0
+        && request.resource.size <= 2 * 1024 * 1024
+        // SVG can carry active content; accept only raster formats produced by
+        // the client image pipeline.
+        && request.resource.contentType in ['image/webp', 'image/png', 'image/jpeg'];
+    }
+
+    // Candidate enforcement: activate only after compatible backend/web and Play26.
+    // Business + receipt are the only two cross-service document reads.
+    function validImagePermit(businessId, folder, fileName) {
+      let id = request.resource.metadata.imagePermitId;
+      let permit = firestore.get(/databases/(default)/documents/bookingRateLimits/$("image-permit-v1_" + id)).data;
+      return id is string && id.matches('[a-f0-9]{64}')
+        && permit.kind == 'image-upload-permit'
+        && permit.businessId == businessId && permit.category == folder
+        && permit.status == 'pending' && permit.expiresAt > request.time
+        && permit.byteSize == request.resource.size
+        && permit.contentType == request.resource.contentType
+        && permit.objectPath == 'businesses/' + businessId + '/' + folder + '/' + fileName;
+    }
+
+    // Object names are tenant-scoped so a user can never overwrite or list a
+    // different business's assets. Download tokens remain usable only for an
+    // already-issued object URL; SDK reads require ownership.
+    match /businesses/{businessId}/{folder}/{fileName} {
+      allow read: if isOwner(businessId);
+      allow create: if resource == null && activeOwner(businessId)
+        && (folder == 'logos' || folder == 'services' || folder == 'canchas' || folder == 'spaces' || folder == 'avatars')
+        && permittedImage() && validImagePermit(businessId, folder, fileName);
+      // An issued receipt cannot be reused to overwrite or retokenize an object.
+      allow update: if false;
+      // Receipt-backed objects are reclaimed by Admin cleanup only. Otherwise
+      // deleting and recreating during the pending window would replay one grant.
+      allow delete: if isOwner(businessId) && !fileName.matches('g_[a-f0-9]{64}\\.(jpg|png|webp)');
+    }
+
+    match /{allPaths=**} { allow read, write: if false; }
+  }
+}
