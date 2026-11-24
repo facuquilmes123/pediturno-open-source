@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="public/icon.svg" alt="Pediturno Logo" width="96" height="96" />
+  <img src="https://raw.githubusercontent.com/facuquilmes123/pediturno-open-source/main/public/pwa-icon-512.png" alt="Pediturno Logo" width="110" height="110" />
 
   <h1>Pediturno — Open-Source Multi-Vertical Booking & Scheduling SaaS Platform</h1>
 
@@ -18,7 +18,7 @@
 
   <p>
     <a href="https://cafecito.app/digitalmenteseguro">
-      <img src="https://img.shields.io/badge/☕_Invitame_un_Cafecito-Apoyar_el_Proyecto-FFDD00?style=for-the-badge&labelColor=1E293B&color=F59E0B" alt="Invitame un Cafecito - digitalmenteseguro" />
+      <img src="https://img.shields.io/badge/%E2%98%95_Invitame_un_Cafecito-Apoyar_el_Proyecto-FFDD00?style=for-the-badge&labelColor=1E293B&color=F59E0B" alt="Invitame un Cafecito - digitalmenteseguro" />
     </a>
   </p>
 
@@ -40,16 +40,30 @@
   <table>
     <tr>
       <td align="center">
-        <img src="public/images/landing/hero-peluqueria.webp" alt="Pediturno Servicios Profesionales" width="300" /><br/>
+        <img src="https://raw.githubusercontent.com/facuquilmes123/pediturno-open-source/main/public/images/landing/estetica.webp" alt="Pediturno Servicios Profesionales" width="290" /><br/>
         <sub><b>Vertical 1: Servicios y Profesionales</b><br/>Barberías, estética, consultorios, estudios</sub>
       </td>
       <td align="center">
-        <img src="public/images/landing/canchas-futbol-nocturno.webp" alt="Pediturno Canchas Deportivas" width="300" /><br/>
+        <img src="https://raw.githubusercontent.com/facuquilmes123/pediturno-open-source/main/public/images/landing/canchas-portal-20261005.webp" alt="Pediturno Canchas Deportivas" width="290" /><br/>
         <sub><b>Vertical 2: Complejos Deportivos</b><br/>Canchas de fútbol, pádel, tenis</sub>
       </td>
       <td align="center">
-        <img src="public/images/landing/espacios-sum-evento.webp" alt="Pediturno Espacios y Salones" width="300" /><br/>
-        <sub><b>Vertical 3: Espacios, SUM y Alquileres</b><br/>Quinchos, salas de ensayo, coworking</sub>
+        <img src="https://raw.githubusercontent.com/facuquilmes123/pediturno-open-source/main/public/images/landing/espacios-salon-eventos.webp" alt="Pediturno Espacios y Salones" width="290" /><br/>
+        <sub><b>Vertical 3: Espacios, SUM y Alquileres</b><br/>Quinchos, salones de eventos, estudios</sub>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="https://raw.githubusercontent.com/facuquilmes123/pediturno-open-source/main/public/images/producto/demo-servicios-20261010.webp" alt="Demo Reserva Servicios" width="290" /><br/>
+        <sub><b>Vista de Agenda y Reserva (Servicios)</b></sub>
+      </td>
+      <td align="center">
+        <img src="https://raw.githubusercontent.com/facuquilmes123/pediturno-open-source/main/public/images/producto/demo-canchas-20261010.webp" alt="Demo Reserva Canchas" width="290" /><br/>
+        <sub><b>Grilla de Disponibilidad (Canchas)</b></sub>
+      </td>
+      <td align="center">
+        <img src="https://raw.githubusercontent.com/facuquilmes123/pediturno-open-source/main/public/images/producto/demo-espacios-20261010.webp" alt="Demo Reserva Espacios" width="290" /><br/>
+        <sub><b>Reserva por Bloques y Fechas (Espacios)</b></sub>
       </td>
     </tr>
   </table>
@@ -65,7 +79,7 @@ Si este repositorio te ahorra semanas de trabajo, te sirve para aprender arquite
 
 <div align="center">
   <a href="https://cafecito.app/digitalmenteseguro" target="_blank" rel="noopener noreferrer">
-    <img srcset="https://cdn.cafecito.app/imgs/buttons/button_1.png 1x, https://cdn.cafecito.app/imgs/buttons/button_1_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_1_3.75x.png 3.75x" src="https://cdn.cafecito.app/imgs/buttons/button_1.png" alt="Invitame un café en cafecito.app/digitalmenteseguro" />
+    <img src="https://cdn.cafecito.app/imgs/buttons/button_1.png" width="195" height="40" alt="Invitame un café en cafecito.app/digitalmenteseguro" />
   </a>
   <br/><br/>
   👉 <strong><a href="https://cafecito.app/digitalmenteseguro">https://cafecito.app/digitalmenteseguro</a></strong>
@@ -345,7 +359,7 @@ Si este proyecto te ayudó a lanzar tu emprendimiento, aprender Next.js + Fireba
 <div align="center">
   <br/>
   <a href="https://cafecito.app/digitalmenteseguro" target="_blank" rel="noopener noreferrer">
-    <img srcset="https://cdn.cafecito.app/imgs/buttons/button_1.png 1x, https://cdn.cafecito.app/imgs/buttons/button_1_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_1_3.75x.png 3.75x" src="https://cdn.cafecito.app/imgs/buttons/button_1.png" alt="Invitame un café en cafecito.app/digitalmenteseguro" />
+    <img src="https://cdn.cafecito.app/imgs/buttons/button_1.png" width="195" height="40" alt="Invitame un café en cafecito.app/digitalmenteseguro" />
   </a>
   <br/><br/>
   <sub>Desarrollado con ❤️ y estándares de seguridad de grado producción. Distribuido bajo licencia <a href="LICENSE">MIT</a>.</sub>
