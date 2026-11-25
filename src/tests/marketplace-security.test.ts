@@ -50,7 +50,7 @@ describe('seller deposits', () => {
     expect(urls.notification).toBe(`https://essential-mediumvioletred-lark-44.hostingersite.com/qa/${key}/api/webhooks/mercadopago/marketplace?order=qa-order`);
     expect(urls.returnTo).toBe('https://essential-mediumvioletred-lark-44.hostingersite.com/pago/qa-order');
     for (const [environment, incompatible] of [
-      ['MP_MARKETPLACE_APP_ID', '4820496429230371'],
+      ['MP_MARKETPLACE_APP_ID', '1234567890123456'],
       ['FIREBASE_PROJECT_ID', 'pediturno-app'],
       ['FIRESTORE_EMULATOR_HOST', undefined],
       ['NODE_ENV', 'production'],
